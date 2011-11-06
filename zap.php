@@ -17,13 +17,13 @@
  * Foundation, Inc., 51 Franklin Street,
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id:$
+ * $Id: $
  */
 
-require_once ('enigma2WebInterface.php');
+require_once ('Enigma2WebInterface.php');
 require_once ('configuration.php');
 
-$webif = new enigma2WebInterface($ip_addr, $http_port, $login);
+$webif = new E2WebInterface($ip_addr, $http_port, $login);
 
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 ?>

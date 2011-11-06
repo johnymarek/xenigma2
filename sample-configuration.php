@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street,
  * Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id:$
+ * $Id: $
  */
 
 $ip_addr = '192.168.1.100';
