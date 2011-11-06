@@ -98,7 +98,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     if(getItemInfo(-1, "playable") == "1")
       "237:243:241";
     else
-      "100:100:100";
+      "164:182:186";
     </script>
     </foregroundColor>
     <script>
