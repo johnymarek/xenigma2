@@ -1,1 +1,27 @@
+Installation instructions for xEnigma2
+
 $Id$
+-------------------------------------------------------------------------------
+
+o This is an extension for xLive package so you must have xLive installed.
+o Extract 'xEnigma2-?.?.zip' file into scripts folder. 
+o Create 'configuration.php' file in 'scripts/xEnigma2' folder. The easiest
+  way is to make copy of 'sample-configuration.php' and then fill in your
+  IP address and login & password. If login is not enabled set $login = '';
+o Add the following item to 'scripts/xLive/menu.rss'
+
+<item>
+  <title>xEnigma2</title>
+  <link>http://localhost/media/sda1/scripts/xEnigma2/</link>
+  <media:thumbnail width="120" height="90">
+    <script>
+     path="/tmp/usbmounts/sda1/scripts/xEnigma2/images/";
+     if (getQueryItemIndex() == getFocusItemIndex())
+       path+"xlive_xenigma2_focus.jpg";
+     else
+       path+"xlive_xenigma2_unfocus.jpg";
+    </script>
+  </media:thumbnail>
+</item>
+
+o Restart xLive from main menu and enjoy!
