@@ -20,9 +20,11 @@
  * $Id$
  */
 
+require_once ('XML_Loader.php');
 require_once ('Enigma2WebInterface.php');
 require_once ('configuration.php');
 
+$xmlLoader = new XML_Loader();
 $webif = new E2WebInterface($ip_addr, $http_port, $login);
 $bouquets = $webif->loadBouquets();
 
@@ -95,9 +97,17 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     </text>
 </itemDisplay>
 
-<!--
-    <text redraw="yes" widthPC="55" heightPC="10" offsetXPC="23" offsetYPC="72" align="center" lines=1 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="36:39:72">New version 0.2 available</text>
--->
+<?php
+$xmldoc = $xmlLoader->Retrieve("http://xenigma2.googlecode.com/svn/trunk/version.xml", "");
+$latestVersion = (float)$xmldoc->version;
+$xmldoc = $xmlLoader->Retrieve("http://localhost/media/sda1/scripts/xEnigma2/version.xml", "");
+$localVersion = (float)$xmldoc->version;
+if($latestVersion > $localVersion) {
+  echo '<text redraw="yes" widthPC="55" heightPC="10" offsetXPC="23" offsetYPC="72" align="center" lines=1 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="36:39:72">';
+  echo "New version $latestVersion available";
+  echo '</text>';
+}
+?>
 
 </mediaDisplay>
 
