@@ -24,11 +24,9 @@ require_once ('Enigma2WebInterface.php');
 require_once ('configuration.php');
 
 $webif = new E2WebInterface($ip_addr, $http_port, $login);
-$bouquet = urlencode($_GET['bouquet']);
+$servicereference = urlencode($_GET['servicereference']);
 
-$services = $webif->loadServices($bouquet);
-$epgnow=$webif->loadEPGnow($bouquet);
-$playableList=$webif->loadPlayableList($bouquet);
+$epg=$webif->loadEPG($servicereference);
 
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 ?>
@@ -80,8 +78,8 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     <image redraw="no" widthPC="100" heightPC="100">/tmp/usbmounts/sda1/scripts/xEnigma2/images/channel_list_bg.jpg</image>
   </backgroundDisplay>
 
-  <itemDisplay>
-    <text redraw="yes" widthPC="100" heightPC="100" fontSize="15" fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf">
+<itemDisplay>
+    <text redraw="yes" widthPC="100" heightPC="100" fontSize="15" fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241">
     <backgroundColor>
     <script>
     if(getFocusItemIndex() == getQueryItemIndex()) {
@@ -93,35 +91,17 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     }
     </script>
     </backgroundColor>
-    <foregroundColor>
-    <script>
-    if(getItemInfo(-1, "playable") == "1")
-      "237:243:241";
-    else
-      "164:182:186";
-    </script>
-    </foregroundColor>
     <script>
     getItemInfo(-1, "title");
     </script>
     </text>
-  </itemDisplay>
+</itemDisplay>
 
-  <text redraw="yes" widthPC="90" heightPC="25" offsetXPC="5.5" offsetYPC="70" align="left" lines=5 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="6:39:72">
+    <text redraw="yes" widthPC="90" heightPC="25" offsetXPC="5.5" offsetYPC="70" align="left" lines=5 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="6:39:72">
     <script>
     infoText;
     </script>
-  </text>
-
-  <onUserInput>
-    ret="false";
-    if(currentUserInput() == "DISPLAY") {
-      epg_url="http://localhost/media/sda1/scripts/xEnigma2/epg.php?servicereference=" + getItemInfo(-1, "servicereference");
-      doModalRSS(epg_url);
-      ret="true";
-    }
-    ret;
-  </onUserInput>
+</text>
 
 </mediaDisplay>
 
@@ -129,34 +109,18 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 <title>---not-used---</title>
 
 <?php
-foreach($services as $service) {
-  $title = $service->servicename;
+foreach($epg as $event) {
+  $title = strftime("%d.%m. %R", $event->start) . " $event->title";
   $description = "";
-  $url = "http://localhost/media/sda1/scripts/xEnigma2/stream.php?servicereference=$service->servicereference";
-  foreach($epgnow as $event) {
-    if($title == $event->servicename) {
-      if($event->title != 'None')
-        $title = "$title ($event->title)";
-      if($event->description != 'None')
-        $description = $event->description;
-      break;
-    }
-  }
-  foreach($playableList as $playableItem) {
-    if($service->servicereference == $playableItem->servicereference) {
-      $playable = $playableItem->isplayable;
-      break;
-    }
-  }
+  $url = "http://localhost/media/sda1/scripts/xEnigma2/addtimer.php?servicereference=$event->servicereference&id=$event->id";
+  if($event->description != 'None')
+    $description = $event->description;
 
   echo <<< ITEM
   <item>
     <title>$title</title>
-    <link>LINK</link>
-    <enclosure type="video/mpeg" url="$url"/>
+    <link>$url</link>
     <description>$description</description>
-    <playable>$playable</playable>
-    <servicereference>$service->servicereference</servicereference>  
   </item>
 
 
