@@ -80,7 +80,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     <image redraw="no" widthPC="100" heightPC="100">/tmp/usbmounts/sda1/scripts/xEnigma2/images/channel_list_bg.jpg</image>
   </backgroundDisplay>
 
-<itemDisplay>
+  <itemDisplay>
     <text redraw="yes" widthPC="100" heightPC="100" fontSize="15" fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf">
     <backgroundColor>
     <script>
@@ -105,14 +105,13 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     getItemInfo(-1, "title");
     </script>
     </text>
-</itemDisplay>
+  </itemDisplay>
 
-    <text redraw="yes" widthPC="90" heightPC="25" offsetXPC="5.5" offsetYPC="70" align="left" lines=5 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="6:39:72">
+  <text redraw="yes" widthPC="90" heightPC="25" offsetXPC="5.5" offsetYPC="70" align="left" lines=5 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="6:39:72">
     <script>
     infoText;
     </script>
-</text>
-
+  </text>
 </mediaDisplay>
 
 <channel>
@@ -146,6 +145,7 @@ foreach($services as $service) {
     <enclosure type="video/mpeg" url="$url"/>
     <description>$description</description>
     <playable>$playable</playable>
+    <servicereference>$service->servicereference</servicereference>  
   </item>
 
 
