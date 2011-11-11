@@ -137,7 +137,9 @@ foreach($services as $service) {
     if($title == $event->servicename) {
       if($event->title != 'None')
         $title = "$title ($event->title)";
-      if($event->description != 'None')
+      if($event->description == '' || $event->description == 'None')
+        $description = $event->descriptionextended;
+      else
         $description = $event->description;
       break;
     }

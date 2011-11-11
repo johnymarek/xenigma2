@@ -113,7 +113,9 @@ foreach($epg as $event) {
   $title = strftime("%d.%m. %R", $event->start) . " $event->title";
   $description = "";
   $url = "http://localhost/media/sda1/scripts/xEnigma2/addtimer.php?servicereference=$event->servicereference&id=$event->id";
-  if($event->description != 'None')
+  if($event->description == '' || $event->description == 'None')
+    $description = $event->descriptionextended;
+  else
     $description = $event->description;
 
   echo <<< ITEM
