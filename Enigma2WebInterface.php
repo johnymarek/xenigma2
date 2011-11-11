@@ -114,7 +114,7 @@ class E2webInterface {
       $serviceevent->currenttime = (int)$event->e2eventcurrenttime;
       $serviceevent->title = (string)$event->e2eventtitle;
       $serviceevent->description = (string)$event->e2eventdescription;
-      $serviceevent->descriptionextented = (string)$event->e2eventdescriptionextexded;
+      $serviceevent->descriptionextended = (string)$event->e2eventdescriptionextended;
       $serviceevent->servicereference = $this->encodeServiceReference((string)$event->e2eventservicereference);
       $serviceevent->servicename = (string)$event->e2eventservicename;
       $services[] = clone($serviceevent);
