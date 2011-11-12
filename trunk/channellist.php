@@ -116,7 +116,8 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   <onUserInput>
     ret="false";
     if(currentUserInput() == "DISPLAY") {
-      epg_url="http://localhost/media/sda1/scripts/xEnigma2/epg.php?servicereference=" + getItemInfo(-1, "servicereference");
+      showIdle();
+      epg_url="http://localhost/media/sda1/scripts/xEnigma2/epg.php?servicereference=" + getItemInfo(getFocusItemIndex(), "servicereference");
       doModalRSS(epg_url);
       ret="true";
     }
