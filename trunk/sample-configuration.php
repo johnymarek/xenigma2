@@ -27,4 +27,6 @@ $https_port = 443;
 // username:passwd
 $login = 'root:root';
 
+$xe2_timezone = 'Europe/Helsinki';
+
 ?>
