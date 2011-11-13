@@ -71,11 +71,6 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   sideRightWidthPC="0"
   >
 
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait1.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait2.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait3.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait4.png</idleImage>
-
   <backgroundDisplay>
     <image redraw="no" widthPC="100" heightPC="100">/tmp/usbmounts/sda1/scripts/xEnigma2/images/channel_list_bg.jpg</image>
   </backgroundDisplay>
@@ -105,10 +100,15 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     </script>
 </text>
 
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait1.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait2.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait3.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait4.png</idleImage>
+
 </mediaDisplay>
 
 <channel>
-<title>---not-used---</title>
+<title>EPG</title>
 
 <?php
 foreach($epg as $event) {
