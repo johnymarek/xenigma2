@@ -85,7 +85,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     <backgroundColor>
     <script>
     if(getFocusItemIndex() == getQueryItemIndex()) {
-      infoText = getItemInfo(-1, "description");
+      descriptionText = getItemInfo(-1, "description");
       "78:116:153";
     }
     else {
@@ -109,15 +109,19 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
   <text redraw="yes" widthPC="90" heightPC="25" offsetXPC="5.5" offsetYPC="70" align="left" lines=5 fontSize=12 fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241" backgroundColor="6:39:72">
     <script>
-    infoText;
+    descriptionText;
     </script>
   </text>
 
+  <onClick>
+    playItemURL();
+  </onClick>
+
   <onUserInput>
     ret="false";
-    if(currentUserInput() == "DISPLAY") {
+    if(currentUserInput() == "1") {
       showIdle();
-      epg_url="http://localhost/media/sda1/scripts/xEnigma2/epg.php?servicereference=" + getItemInfo(getFocusItemIndex(), "servicereference");
+      epg_url="epg.php?servicereference=" + getItemInfo(getFocusItemIndex(), "servicereference");
       doModalRSS(epg_url);
       ret="true";
     }
@@ -133,7 +137,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 foreach($services as $service) {
   $title = $service->servicename;
   $description = "";
-  $url = "http://localhost/media/sda1/scripts/xEnigma2/stream.php?servicereference=$service->servicereference";
+  $url = "http://$ip_addr:8001/$service->servicereference";
   foreach($epgnow as $event) {
     if($title == $event->servicename) {
       if($event->title != 'None')
@@ -158,7 +162,6 @@ foreach($services as $service) {
   echo <<< ITEM
   <item>
     <title>$title</title>
-    <link>LINK</link>
     <enclosure type="video/mpeg" url="$url"/>
     <description>$description</description>
     <playable>$playable</playable>
