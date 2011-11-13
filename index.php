@@ -48,6 +48,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   infoXPC="80"
   infoYPC="80"
 
+  itemBorderColor="-1:-1:-1"
   itemGap="0"
   itemHeightPC="7"
   itemImageHeightPC="0"
@@ -68,22 +69,15 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   sideRightWidthPC="0"
   >
 
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait1.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait2.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait3.png</idleImage>
-  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait4.png</idleImage>
-
   <backgroundDisplay>
     <image redraw="no" widthPC="100" heightPC="100">/tmp/usbmounts/sda1/scripts/xEnigma2/images/service_selection_bg.jpg</image>
   </backgroundDisplay>
 
-
-<itemDisplay>
+  <itemDisplay>
     <text redraw="yes" widthPC="100" heightPC="100" fontSize="15" fontFile="/tmp/usbmounts/sda1/scripts/xEnigma2/fonts/nmsbd.ttf" foregroundColor="237:243:241">
     <backgroundColor>
     <script>
     if(getFocusItemIndex() == getQueryItemIndex()) {
-      infoText = getItemInfo(-1, "description");
       "78:116:153";
      }
      else {
@@ -95,7 +89,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
     getItemInfo(-1, "title");
     </script>
     </text>
-</itemDisplay>
+  </itemDisplay>
 
 <?php
 $xmldoc = $xmlLoader->Retrieve("http://xenigma2.googlecode.com/svn/trunk/version.xml", "");
@@ -109,16 +103,20 @@ if($latestVersion > $localVersion) {
 }
 ?>
 
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait1.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait2.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait3.png</idleImage>
+  <idleImage>/tmp/usbmounts/sda1/scripts/xEnigma2/images/wait4.png</idleImage>
+
 </mediaDisplay>
 
 <channel>
-<title>---not-used---</title>
+<title>INDEX</title>
 
 <?php
 foreach($bouquets as $bouquet) {
-  $serviceref=$bouquet->servicereference;
   $title = $bouquet->servicename;
-  $link="http://localhost/media/sda1/scripts/xEnigma2/channellist.php?bouquet=" . $serviceref;
+  $link="http://localhost/media/sda1/scripts/xEnigma2/channellist.php?bouquet=$bouquet->servicereference";
 
   echo <<< ITEM
 
