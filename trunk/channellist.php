@@ -109,6 +109,8 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   </text>
 
   <onClick>
+    SwitchViewer(0);
+    SwitchViewer(7);
     playItemURL();
   </onClick>
 
