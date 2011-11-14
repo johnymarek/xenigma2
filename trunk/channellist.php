@@ -142,13 +142,7 @@ foreach($services as $service) {
     if($title == $event->servicename) {
       if($event->title != 'None')
         $title = "$title ($event->title)";
-      if($event->description == '' || $event->description == 'None') {
-        if($event->descriptionextended != 'None')
-          $description = $event->descriptionextended;
-      }
-      else {
-        $description = $event->description;
-      }
+      $description = $event->description;
       break;
     }
   }
@@ -165,7 +159,7 @@ foreach($services as $service) {
     <enclosure type="video/mpeg" url="$url"/>
     <description>$description</description>
     <playable>$playable</playable>
-    <servicereference>$service->servicereference</servicereference>  
+    <servicereference>$service->servicereference</servicereference>
   </item>
 
 

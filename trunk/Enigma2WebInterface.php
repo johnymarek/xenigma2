@@ -29,7 +29,6 @@ class E2event {
   var $currenttime;
   var $title;
   var $description;
-  var $descriptionextended;
   var $servicereference;
   var $servicename;
 }
@@ -113,8 +112,15 @@ class E2webInterface {
       $serviceevent->duration = (int)$event->e2eventduration;
       $serviceevent->currenttime = (int)$event->e2eventcurrenttime;
       $serviceevent->title = (string)$event->e2eventtitle;
-      $serviceevent->description = (string)$event->e2eventdescription;
-      $serviceevent->descriptionextended = (string)$event->e2eventdescriptionextended;
+      $description = (string)$event->e2eventdescription;
+      if($description == '' || $description == 'None') {
+        $extended = (string)$event->e2eventdescriptionextended;
+        if($extended == 'None')
+          $description = '';
+        else
+          $description = $extended;
+      }
+      $serviceevent->description = $description;
       $serviceevent->servicereference = $this->encodeServiceReference((string)$event->e2eventservicereference);
       $serviceevent->servicename = (string)$event->e2eventservicename;
       $services[] = clone($serviceevent);
