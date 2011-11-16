@@ -109,19 +109,20 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
   </text>
 
   <onClick>
-    SwitchViewer(0);
-    SwitchViewer(7);
+    SwitchViewer(1);
     playItemURL();
   </onClick>
 
   <onUserInput>
+    userInput = currentUserInput();
     ret="false";
-    if(currentUserInput() == "1") {
+    if(userInput == "1") {
       showIdle();
       epg_url="epg.php?servicereference=" + getItemInfo(getFocusItemIndex(), "servicereference");
       doModalRSS(epg_url);
       ret="true";
     }
+
     ret;
   </onUserInput>
 
