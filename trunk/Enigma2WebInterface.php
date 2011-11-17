@@ -161,34 +161,6 @@ class E2webInterface {
       return true;
     return false;
   }
-
-  function isStreamable($serviceReference) {
-    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-    if ($socket == false) {
-      return false;
-    }
-
-    $retval = true;
-
-    $result = socket_connect($socket, $this->ip_addr, 8001);
-    if ($result === false) {
-      $retval = false;
-    }
-    else {
-      $msg = "GET /$serviceReference HTTP/1.0\r\n";
-      $msg .= "\r\n";
-
-      socket_write($socket, $msg, strlen($msg));
-
-      $reply = socket_read($socket, 200);
-      $headers = explode("\r\n", $reply);
-      if ($headers[0] != "HTTP/1.0 200 OK")
-        $retval = false;
-    }
-
-    socket_close($socket);
-    return $retval;
-  }
 }
 
 ?>
