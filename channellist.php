@@ -28,6 +28,7 @@ $bouquet = urlencode($_GET['bouquet']);
 
 $services = $webif->loadServices($bouquet);
 $epgnow=$webif->loadEPGnow($bouquet);
+$epgnext=$webif->loadEPGnext($bouquet);
 $playableList=$webif->loadPlayableList($bouquet);
 
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
@@ -115,10 +116,11 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
   <onUserInput>
     userInput = currentUserInput();
+    serviceReference = getItemInfo(getFocusItemIndex(), "servicereference");
     ret="false";
     if(userInput == "1") {
       showIdle();
-      epg_url="epg.php?servicereference=" + getItemInfo(getFocusItemIndex(), "servicereference");
+      epg_url="epg.php?servicereference=" + serviceReference;
       doModalRSS(epg_url);
       ret="true";
     }
@@ -141,12 +143,20 @@ foreach($services as $service) {
   $title = $service->servicename;
   $description = "";
   $url = "http://$ip_addr:8001/$service->servicereference";
-  foreach($epgnow as $event) {
-    if($title == $event->servicename) {
-      if($event->title != 'None')
-        $title = "$title ($event->title)";
-      $description = $event->description;
-      break;
+  foreach($epgnow as $eventnow) {
+    if($service->servicereference == $eventnow->servicereference) {
+      if($eventnow->title != 'None')
+        $title = "$title ($eventnow->title)";
+      foreach($epgnext as $eventnext) {
+        if($service->servicereference == $eventnext->servicereference) {
+          if($eventnext->title != 'None')
+            $title = "$title [$eventnext->title]";
+          break;
+        }
+      }
+      $description = strftime("%R", $eventnow->start) . " - " .
+        strftime("%R", $eventnow->start+$eventnow->duration) .
+        " $eventnow->description";
     }
   }
   foreach($playableList as $playableItem) {
