@@ -140,6 +140,12 @@ class E2webInterface {
     return $this->buildEPGList($xmldoc);
   }
 
+  function loadEPGnext($bouquetReference) {
+    $url = "$this->ip_addr:$this->http_port/web/epgnext?bRef=$bouquetReference";
+    $xmldoc = $this->xml_loader->Retrieve($url, $this->login);
+    return $this->buildEPGList($xmldoc);
+  }
+
   function zap($serviceReference) {
     $url = "$this->ip_addr:$this->http_port/web/zap?sRef=$serviceReference";
     $xmldoc = $this->xml_loader->Retrieve($url, $this->login);
