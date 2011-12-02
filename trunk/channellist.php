@@ -23,6 +23,8 @@
 require_once ('Enigma2WebInterface.php');
 require_once ('configuration.php');
 
+date_default_timezone_set($xe2_timezone);
+
 $webif = new E2WebInterface($ip_addr, $http_port, $login);
 $bouquet = urlencode($_GET['bouquet']);
 
