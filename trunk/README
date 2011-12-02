@@ -11,6 +11,6 @@ o Streaming from Enigma2 to Xtreamer
 
 Caveats:
 
-o Tested only on SideWinder2
+o Tested on SideWinder1+2, iXtreamer
 o https is not supported
 o Password protected streaming is not supported
