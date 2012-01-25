@@ -126,6 +126,37 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
       doModalRSS(epg_url);
       ret="true";
     }
+    else if(userInput == "0") {
+      showIdle();
+      base_url="<?php
+        $url="http://";
+      if($login != '')
+        $url="$url$login@";
+      $url="$url$ip_addr:$http_port/web/";
+      echo $url;
+      ?>";
+      zap_url=base_url + "zap?sRef=" + serviceReference;
+      dlok=loadXMLFile(zap_url);
+      if(dlok != null) {
+        if(getXMLText("e2simplexmlresult", "e2state", 0) == "True") {
+          msg_url= "<?php
+          if(isset($xe2_zapMessage) == FALSE)
+            $xe2_zapMessage = "Channel zapped by Xtreamer";
+          if($xe2_zapMessage == '') {
+            echo '';
+          } else {
+            $xe2_zapMessage = urlencode($xe2_zapMessage);
+            echo "message?text=$xe2_zapMessage&#38;type=1&#38;timeout=60";
+          }
+          ?>";
+          if(msg_url != "")
+            loadXMLFile(base_url + msg_url);
+        }
+      }
+      cancelIdle();
+      redrawDisplay();
+      ret="true";
+    }
 
     ret;
   </onUserInput>
