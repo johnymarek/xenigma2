@@ -146,7 +146,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
             echo '';
           } else {
             $xe2_zapMessage = urlencode($xe2_zapMessage);
-            echo "message?text=$xe2_zapMessage&#38;type=1&#38;timeout=60";
+            echo "message?text=$xe2_zapMessage&#38;type=1&#38;timeout=15";
           }
           ?>";
           if(msg_url != "")
