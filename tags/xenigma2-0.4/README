@@ -1,0 +1,17 @@
+README for xEnigma2
+
+$Id$
+-------------------------------------------------------------------------------
+
+Features:
+
+o Streaming from Enigma2 to Xtreamer
+o Bouquets created in your Enigma2 STB are available for Xtreamer
+o EPG viewer (press '1' in channel list for EPG)
+o Channel zapping (press '0' in channel list to zap) 
+
+Caveats:
+
+o Tested on SideWinder1+2, iXtreamer
+o https is not supported
+o Password protected streaming is not supported

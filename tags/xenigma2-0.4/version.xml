@@ -1,0 +1,11 @@
+<package>
+  <name>xEnigma2 - Enigma2 stream player for Xtreamer</name>
+  <version>0.4</version>
+  <link>index.php</link>
+  <focusedIcon>images/xenigma2_focus.png</focusedIcon>
+  <unfocusedIcon>images/xenigma2_unfocus.png</unfocusedIcon>
+  <updatelink></updatelink>
+  <date>2012-03-24</date>
+  <copyright>(C) Olli Savia</copyright>
+  <licence>GNU General Public License v2</licence>
+</package>
