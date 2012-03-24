@@ -3,6 +3,11 @@ NEWS for xEnigma2
 $Id$
 -------------------------------------------------------------------------------
 
+--- xEnigma2-0.4 ---
+o Added support for channel zapping
+o Added support for RSS Application Loader 
+  (http://forum.xtreamer.net/page/index.html/_/articles/hot-projects/rss-application-loader-r180)
+
 --- xEnigma2-0.3 ---
 o Added support for Now & Next on Channel list (Thanks iceware)
 
